@@ -1,0 +1,79 @@
+.page-margin {
+	margin: -3% 5% 0 5%;
+}
+
+.rectangle {
+	width: 2.5rem;
+	height: 0.8rem;
+	background-color: #000000;
+	border-radius: 40px;
+	margin-left: 0.5rem;
+}
+.App {
+	position: relative;
+	z-index: 1;
+}
+.main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 70vh;
+}
+
+.main > h1 {
+	text-align: center;
+	font-size: 3rem;
+	line-height: normal;
+}
+.main > label {
+	background-color: #d9d9d9;
+	border-radius: 40px;
+	padding: 0.5rem 2rem;
+	font-weight: 600;
+	cursor: pointer;
+	font-size: 0.8rem;
+}
+.main > input {
+	display: none;
+}
+.fun-fact {
+	width: 30%;
+	text-align: center;
+	font-size: 0.7rem;
+	transition: all ease-in-out 5s;
+}
+
+.slider {
+	position: absolute;
+	/* position: absolute; */
+	transform: rotate(35deg);
+}
+
+.slider-top {
+	top: 0;
+	right: -15rem;
+}
+.slider-bottom {
+	bottom: -3rem;
+	left: -15rem;
+}
+
+@media screen and (max-width: 768px) {
+	.page-margin {
+		margin: -15% 5% 0 5%;
+	}
+	.main > h1 {
+		font-size: 2rem;
+	}
+	.fun-fact {
+		width: 90%;
+	}
+	.slider-top {
+		right: -3rem;
+	}
+	.slider-bottom {
+		bottom: -3rem;
+		left: -3rem;
+	}
+}
