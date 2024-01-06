@@ -1,13 +1,24 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Detect Fake Images with FARQ</title>
+		<link rel="preload" href="/assets/real/1.jpg" as="image" />
+		<link rel="preload" href="/assets/real/2.jpg" as="image" />
+		<link rel="preload" href="/assets/real/3.jpg" as="image" />
+		<link rel="preload" href="/assets/real/4.jpg" as="image" />
+		<link rel="preload" href="/assets/real/5.jpg" as="image" />
+		<link rel="preload" href="/assets/fake/1.jpg" as="image" />
+		<link rel="preload" href="/assets/fake/2.jpg" as="image" />
+		<link rel="preload" href="/assets/fake/3.jpg" as="image" />
+		<link rel="preload" href="/assets/fake/4.jpg" as="image" />
+		<link rel="preload" href="/assets/fake/5.jpg" as="image" />
+		<link rel="preload" href="/assets/fake/6.jpg" as="image" />
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="module" src="/src/main.jsx"></script>
+	</body>
 </html>
