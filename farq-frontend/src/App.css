@@ -34,6 +34,10 @@
 	cursor: pointer;
 	font-size: 0.8rem;
 }
+.main > label:hover {
+	transition: all ease-in-out 300ms;
+	box-shadow: #00000025 0px 0px 10px 0px;
+}
 .main > input {
 	display: none;
 }
