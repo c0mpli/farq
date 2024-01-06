@@ -1,6 +1,9 @@
 .page-margin {
 	margin: -9% 5% 0 5%;
 }
+.page-margin2 {
+	margin: 3% 5% 0 5%;
+}
 
 .rectangle {
 	width: 2.5rem;
@@ -26,7 +29,8 @@
 	font-size: 3rem;
 	line-height: normal;
 }
-.main > label {
+.main > label,
+.try-again {
 	background-color: #d9d9d9;
 	border-radius: 40px;
 	padding: 0.5rem 2rem;
@@ -34,7 +38,12 @@
 	cursor: pointer;
 	font-size: 0.8rem;
 }
-.main > label:hover {
+.try-again {
+	border: none;
+	color: #000000;
+}
+.main > label:hover,
+.try-again:hover {
 	transition: all ease-in-out 300ms;
 	box-shadow: #00000025 0px 0px 10px 0px;
 }
@@ -69,6 +78,48 @@
 	border-radius: 20px;
 }
 
+.input-image {
+	width: 12rem;
+	height: 12rem;
+	border-radius: 20px;
+}
+
+footer {
+	display: flex;
+	float: right;
+	gap: 1rem;
+	cursor: pointer;
+}
+footer > div > a {
+	font-weight: 600;
+	text-decoration: none;
+	color: black;
+}
+
+.hover-underline-animation {
+	display: inline-block;
+	position: relative;
+}
+
+.hover-underline-animation:after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	transform: scaleX(0);
+	height: 2px;
+	bottom: -5px;
+	left: 0;
+
+	background-color: #000000;
+	transform-origin: bottom right;
+	transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover:after {
+	transform: scaleX(1);
+	transform-origin: bottom left;
+}
+
 @media screen and (max-width: 768px) {
 	.page-margin {
 		margin: -27% 5% 0 5%;
@@ -90,5 +141,11 @@
 	.slider-image {
 		width: 5rem;
 		height: 7rem;
+	}
+	footer > div > a {
+		font-size: 0.7rem;
+	}
+	footer {
+		display: none;
 	}
 }

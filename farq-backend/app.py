@@ -27,17 +27,15 @@ def preprocess_image(image_path):
     return img_array
 
 @app.route('/predict', methods=['POST'])
+@cross_origin()
 def predict():
     try:
         # Check if the post request has the file part
-        if 'file' not in request.files:
-            return jsonify({'error': 'No file part'})
-
+        if len(request.files) ==0:
+            return "File empty", 400
         file = request.files['file']
-
-        # If the user does not select a file, browser may also submit an empty part without a filename
         if file.filename == '':
-            return jsonify({'error': 'No selected file'})
+            return "No image selected for uploading", 400
 
         # Check if the file has an allowed extension (adjust as needed)
         allowed_extensions = {'png', 'jpg', 'jpeg'}

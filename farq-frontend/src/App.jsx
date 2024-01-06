@@ -14,7 +14,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { InfinitySpin } from "react-loader-spinner";
-
+import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -36,6 +36,7 @@ import real5 from "./assets/real/5.jpg";
 function App() {
 	const [isAnswerLoaded, setIsAnswerLoaded] = useState(false);
 	const [inputImage, setInputImage] = useState(null);
+	const [answer, setAnswer] = useState(null);
 	const fun_facts = [
 		"Did you know that real images capture subtle imperfections, while AI-generated images exhibit unnaturally flawless perfection?",
 		"Did you know that authentic photos portray genuine emotions, contrasting with AI-generated images that may simulate expressions lacking real human sentiment?",
@@ -58,7 +59,29 @@ function App() {
 		slidesToShow: isMobile ? 3 : 8,
 		slidesToScroll: 1,
 	};
-	function getAnswer() {}
+	async function getAnswer(image) {
+		setIsAnswerLoaded(false);
+		const formData = new FormData();
+		formData.append("file", image);
+		try {
+			const res = await axios.post(`${BACKEND_URL}/predict`, formData, {
+				headers: {
+					"Content-Type": "multipart/form-data",
+				},
+			});
+			const data = res?.data;
+			const fakeValue = data["FAKE"];
+			const realValue = data["REAL"];
+			setAnswer(() =>
+				fakeValue > realValue
+					? { answer: "fake", percent: fakeValue }
+					: { answer: "real", percent: realValue }
+			);
+			setIsAnswerLoaded(true);
+		} catch (err) {
+			console.log(err);
+		}
+	}
 
 	const [randomNumber, setRandomNumber] = useState(
 		Math.floor(Math.random() * fun_facts.length)
@@ -91,6 +114,8 @@ function App() {
 		real5,
 	];
 
+	const BACKEND_URL = "http://127.0.0.1:5000";
+
 	useEffect(() => {
 		//update the random number every 5 seconds
 		const interval = setInterval(() => {
@@ -98,8 +123,30 @@ function App() {
 		}, 7000);
 		return () => clearInterval(interval);
 	}, []);
+
+	function resetValues() {
+		setIsAnswerLoaded(false);
+		setInputImage(null);
+		setAnswer(null);
+	}
 	return isAnswerLoaded ? (
-		<></>
+		<div className="page-margin2">
+			<nav>
+				<div>
+					<h1 style={{ cursor: "pointer" }}>FARQ</h1>
+					<div className="rectangle"></div>
+				</div>
+			</nav>
+			<div className="main">
+				<img src={URL.createObjectURL(inputImage)} className="input-image" />
+				<h1>
+					Your image is {answer?.percent}% {answer?.answer}
+				</h1>
+				<button className="try-again" onClick={resetValues}>
+					Try Another Image
+				</button>
+			</div>
+		</div>
 	) : (
 		<>
 			<div className="slider-wrapper">
@@ -117,7 +164,12 @@ function App() {
 			<div className="page-margin App">
 				<nav>
 					<div>
-						<h1 style={{ cursor: "pointer" }}>FARQ</h1>
+						<h1
+							style={{ cursor: "pointer" }}
+							className="hover-underline-animation"
+						>
+							FARQ
+						</h1>
 						<div className="rectangle"></div>
 					</div>
 				</nav>
@@ -148,11 +200,26 @@ function App() {
 								id="image-input"
 								name="image-input"
 								accept="image/png, image/jpeg"
-								onChange={(e) => setInputImage(e.target.files[0])}
+								onChange={(e) => {
+									setInputImage(() => e.target.files[0]);
+									getAnswer(e.target.files[0]);
+								}}
 							/>
 						</>
 					)}
 				</div>
+				<footer>
+					<div className="hover-underline-animation">
+						<a href="https://github.com/c0mpli" target="_blank">
+							Github
+						</a>
+					</div>
+					<div className="hover-underline-animation">
+						<a href="https://www.linkedin.com/in/jashdoshi/" target="_blank">
+							LinkedIn
+						</a>
+					</div>
+				</footer>
 			</div>
 			<div className="slider-wrapper">
 				<Slider {...settings} className="slider slider-bottom">
