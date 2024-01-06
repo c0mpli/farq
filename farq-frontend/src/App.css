@@ -1,5 +1,5 @@
 .page-margin {
-	margin: -3% 5% 0 5%;
+	margin: -9% 5% 0 5%;
 }
 
 .rectangle {
@@ -51,7 +51,7 @@
 }
 
 .slider-top {
-	top: 0;
+	top: -3rem;
 	right: -15rem;
 }
 .slider-bottom {
@@ -59,9 +59,15 @@
 	left: -15rem;
 }
 
+.slider-image {
+	width: 8rem;
+	height: 10rem;
+	border-radius: 20px;
+}
+
 @media screen and (max-width: 768px) {
 	.page-margin {
-		margin: -15% 5% 0 5%;
+		margin: -27% 5% 0 5%;
 	}
 	.main > h1 {
 		font-size: 2rem;
@@ -70,10 +76,15 @@
 		width: 90%;
 	}
 	.slider-top {
-		right: -3rem;
+		top: 1rem;
+		right: -7.5rem;
 	}
 	.slider-bottom {
-		bottom: -3rem;
-		left: -3rem;
+		bottom: 1rem;
+		left: -5.5rem;
+	}
+	.slider-image {
+		width: 5rem;
+		height: 7rem;
 	}
 }

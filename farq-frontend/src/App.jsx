@@ -19,6 +19,20 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useWindowDimensions from "./hooks/useWindowDimensions";
+
+import fake1 from "./assets/fake/1.jpg";
+import fake2 from "./assets/fake/2.jpg";
+import fake3 from "./assets/fake/3.jpg";
+import fake4 from "./assets/fake/4.jpg";
+import fake5 from "./assets/fake/5.jpg";
+import fake6 from "./assets/fake/6.jpg";
+
+import real1 from "./assets/real/1.jpg";
+import real2 from "./assets/real/2.jpg";
+import real3 from "./assets/real/3.jpg";
+import real4 from "./assets/real/4.jpg";
+import real5 from "./assets/real/5.jpg";
+
 function App() {
 	const [isAnswerLoaded, setIsAnswerLoaded] = useState(false);
 	const [inputImage, setInputImage] = useState(null);
@@ -41,7 +55,7 @@ function App() {
 		infinite: true,
 		autoplay: true,
 		speed: 500,
-		slidesToShow: isMobile ? 7 : 10,
+		slidesToShow: isMobile ? 3 : 8,
 		slidesToScroll: 1,
 	};
 	function getAnswer() {}
@@ -49,6 +63,33 @@ function App() {
 	const [randomNumber, setRandomNumber] = useState(
 		Math.floor(Math.random() * fun_facts.length)
 	);
+
+	const topImages = [
+		fake1,
+		fake2,
+		fake3,
+		fake4,
+		fake5,
+		fake6,
+		fake1,
+		fake2,
+		fake3,
+		fake4,
+		fake5,
+		fake6,
+	];
+	const bottomImages = [
+		real1,
+		real2,
+		real3,
+		real4,
+		real5,
+		real1,
+		real2,
+		real3,
+		real4,
+		real5,
+	];
 
 	useEffect(() => {
 		//update the random number every 5 seconds
@@ -63,42 +104,13 @@ function App() {
 		<>
 			<div className="slider-wrapper">
 				<Slider {...settings} className="slider slider-top">
-					<div>
-						<h3>1</h3>
-					</div>
-					<div>
-						<h3>2</h3>
-					</div>
-					<div>
-						<h3>3</h3>
-					</div>
-					<div>
-						<h3>4</h3>
-					</div>
-					<div>
-						<h3>5</h3>
-					</div>
-					<div>
-						<h3>6</h3>
-					</div>
-					<div>
-						<h3>1</h3>
-					</div>
-					<div>
-						<h3>2</h3>
-					</div>
-					<div>
-						<h3>3</h3>
-					</div>
-					<div>
-						<h3>4</h3>
-					</div>
-					<div>
-						<h3>5</h3>
-					</div>
-					<div>
-						<h3>6</h3>
-					</div>
+					{topImages.map((img, index) => {
+						return (
+							<div key={index} style={{}}>
+								<img src={img} className="slider-image" style={{}} />
+							</div>
+						);
+					})}
 				</Slider>
 			</div>
 
@@ -144,42 +156,13 @@ function App() {
 			</div>
 			<div className="slider-wrapper">
 				<Slider {...settings} className="slider slider-bottom">
-					<div>
-						<h3>1</h3>
-					</div>
-					<div>
-						<h3>2</h3>
-					</div>
-					<div>
-						<h3>3</h3>
-					</div>
-					<div>
-						<h3>4</h3>
-					</div>
-					<div>
-						<h3>5</h3>
-					</div>
-					<div>
-						<h3>6</h3>
-					</div>
-					<div>
-						<h3>1</h3>
-					</div>
-					<div>
-						<h3>2</h3>
-					</div>
-					<div>
-						<h3>3</h3>
-					</div>
-					<div>
-						<h3>4</h3>
-					</div>
-					<div>
-						<h3>5</h3>
-					</div>
-					<div>
-						<h3>6</h3>
-					</div>
+					{bottomImages.map((img, index) => {
+						return (
+							<div key={index} style={{}}>
+								<img src={img} className="slider-image" style={{}} />
+							</div>
+						);
+					})}
 				</Slider>
 			</div>
 		</>
